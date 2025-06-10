@@ -6,22 +6,16 @@ let linkColl = document.getElementsByClassName("dropdown__link");
 
 
 
- for(let o = 0; o < dropValue.length; o++){
-dropValue[o].addEventListener("click", () => {
-    dropList[o].classList.toggle("dropdown__list_active");
-});
-};
-
-[...dropItemColl].forEach((elem)=> elem.addEventListener("click",(e)=> {
-   
-    e.preventDefault();
-    [...dropValue].forEach((el,index,arr)=> 
-        {   
-            console.log(arr);
-            [...dropList].forEach((e) => e.classList.remove("dropdown__list_active"));
-            
-        });
+for (let i= 0; i<dropValue.length; i++){dropValue[i].onclick = (e) => {
+    let target = e.target;
+	 dropList[i].classList.toggle("dropdown__list_active");
+	[...linkColl].forEach((el)=> el.onclick = (e) => {
+		e.preventDefault();
+		target.textContent = e.target.textContent;
+		dropList[i].classList.remove("dropdown__list_active");
+}
+	);
     
-}));
+}}
 
 
