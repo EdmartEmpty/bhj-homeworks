@@ -17,14 +17,18 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода символа вызываем this.success()
-      При неправильном вводе символа - this.fail();
-      DOM-элемент текущего символа находится в свойстве this.currentSymbol.
-     */
+    let body = document.querySelector("body");
+	  let word = body.querySelector(".word");
+	  let playerWord = "";
+	  body.addEventListener("keyup",(e)=> {
+				playerWord += e.key;
+				if(e.key.toLowerCase() ===  this.currentSymbol.textContent){
+					 this.success();
+} else {
+	this.fail();
+}		
+  });
+
   }
 
   success() {
@@ -92,3 +96,22 @@ class Game {
 
 new Game(document.getElementById('game'))
 
+let taimer =  document.createElement("p");
+let displayTaimer = document.createElement("span");
+
+
+
+taimer.textContent = "Таймер обратного отсчёта :";
+taimer.id = "taimer";
+
+document.querySelector(".status").append(taimer);
+ taimer.append(displayTaimer);
+let symbolLength = document.querySelectorAll(".symbol");
+ displayTaimer.textContent = document.querySelectorAll(".symbol").length;
+displayTaimer.textContent = document.querySelectorAll(".symbol").length
+ let t  = setInterval(()=> {displayTaimer.textContent--
+				if(+displayTaimer.textContent === 0){
+alert("Вы проиграли");
+clearInterval(t);
+}
+},1000);
