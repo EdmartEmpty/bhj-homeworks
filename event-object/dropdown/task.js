@@ -1,21 +1,23 @@
-let dropList = document.getElementsByClassName("dropdown__list");
-let dropValue = document.getElementsByClassName("dropdown__value");
-let dropItemColl = document.getElementsByClassName("dropdown__item");
-let linkColl = document.getElementsByClassName("dropdown__link");
- 
+let dropList = document.querySelectorAll(".dropdown__list");
+let dropValue = document.querySelectorAll(".dropdown__value");
+let dropItemColl = document.querySelectorAll(".dropdown__item");
+let linkColl = document.querySelectorAll(".dropdown__link");
 
 
-
-for (let i= 0; i<dropValue.length; i++){dropValue[i].onclick = (e) => {
-    let target = e.target;
-	 dropList[i].classList.toggle("dropdown__list_active");
-	[...linkColl].forEach((el)=> el.onclick = (e) => {
-		e.preventDefault();
-		target.textContent = e.target.textContent;
-		dropList[i].classList.remove("dropdown__list_active");
-}
-	);
+dropValue.forEach((el,index) => el.addEventListener("click", function(e) {
     
-}}
+    dropList[index].classList.toggle("dropdown__list_active");
+	
+    }));
 
-
+	linkColl.forEach((link) => link.addEventListener("click", function(event) {
+		
+        event.preventDefault();
+    	let node = link.closest("div");
+	
+	
+	node.querySelector(".dropdown__value").textContent = event.target.textContent;
+	
+	node.querySelector(".dropdown__list").classList.remove("dropdown__list_active");
+	  
+    }));
