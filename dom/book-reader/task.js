@@ -2,7 +2,7 @@ let book = document.querySelector(".book__content");
 let bookSize = document.querySelectorAll(".font-size");
  let colorColl = document.querySelectorAll(".color");
  
-console.log(colorColl);
+ 
  
 bookSize.forEach((elem) => elem.addEventListener("click", (e) => {
     e.preventDefault();
