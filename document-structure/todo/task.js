@@ -27,6 +27,7 @@ formList.addEventListener("submit", (event) => {
         remove.outerHTML = `<a href="#" class = "task__remove">&times;</a>`;
         div.classList.add("task");
         localStorage.setItem(aria.value, div.outerHTML);
+        
         aria.value = "";
 
         
@@ -61,8 +62,6 @@ for (let p in localStorage) {
   if(link){
     link.forEach(el => el.addEventListener("click", (e)=>  
         {
-       
-        
         delete localStorage[e.currentTarget.querySelector("div").textContent];
         e.currentTarget.remove()
     }));
