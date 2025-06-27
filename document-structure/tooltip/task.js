@@ -1,31 +1,29 @@
 let links = document.querySelectorAll(".has-tooltip");
-let div = document.createElement("div");
-div.classList.add("tooltip");
-
+ 
 
 
 
 links.forEach((link) => link.addEventListener("click", (event) => {
     event.preventDefault();
-    function show() {
-        div.textContent = event.target.getAttribute("title");
-        div.classList.add("tooltip_active");
+    
+    let tooltip = link.querySelector(".tooltip");
+    
+    if(!tooltip){
+        tooltip = document.createElement("div");
+        tooltip.classList.add("tooltip");
+        tooltip.textContent = link.getAttribute("title");
+         const { left, top } = link.getBoundingClientRect();
+        tooltip.style.top = (top + 18) + "px";
+        tooltip.style.left = (left) + "px";
 
-
-        const { left, top } = event.target.getBoundingClientRect();
-        div.style.top = (top + 18) + "px";
-        div.style.left = (left) + "px";
-
-        event.target.appendChild(div);
+         link.appendChild(tooltip);
 
     }
+   
+        tooltip.classList.toggle("tooltip_active");
 
-    show();
+        document.querySelectorAll(".tooltip").forEach((e) => {if(e !== tooltip){
+            e.classList.remove("tooltip_active");
+        }})
 
-    link.addEventListener("mouseout", () => {
-        
-            div.classList.remove("tooltip_active")
-           
-      
-    });
 }));
