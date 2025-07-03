@@ -10,11 +10,10 @@ xhrPost.open("POST", "https://students.netoservices.ru/nestjs-backend/poll");
 xhrPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 
-
 xhrPost.addEventListener("readystatechange", () => {
     if (xhrPost.readyState === xhrPost.DONE) {
         let responsePOst = JSON.parse(xhrPost.responseText);
-        console.log(responsePOst.stat);
+        
         responsePOst.stat.forEach((el) => {
             let arrResponsePost = document.createElement("div");
         document.querySelector(".card").appendChild(arrResponsePost);
