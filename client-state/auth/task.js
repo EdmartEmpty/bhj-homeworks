@@ -1,8 +1,30 @@
+let r = document.createElement("div");
+r.style.width = "30px";
+r.style.height = "20px";
+r.style.backgroundColor = "black";
+r.style.color = "white";
+r.style.borderRadius = "10px";
+r.style.fontSize = "20px"; 
+r.style.position = "absolute";
+r.style.top = "70px";
+r.style.right = "430px";
+r.innerHTML = "&times;";
+r.style.textAlign = "center";
+document.querySelector(".welcome").appendChild(r);
+
+r.addEventListener("click", () => {
+    document.querySelector(".welcome").classList.remove("welcome_active");
+    document.querySelector(".signin").classList.add("signin_active");
+	localStorage.clear();
+})
+
 if(localStorage.getItem("user")){
 	document.querySelector(".welcome").classList.add("welcome_active");
 			document.getElementById("user_id").textContent = localStorage.getItem("user");
 			document.querySelector(".signin").classList.remove("signin_active");
+			
 }
+
 
 let form = document.getElementById("signin__form");
 
@@ -20,9 +42,10 @@ form.addEventListener("submit", (e) => {
 			document.querySelector(".signin").classList.remove("signin_active");
 			localStorage.setItem("user",response.user_id);
 } else if(response.success === false) {
-		let startLink = document.querySelector("body").outerHTML;
-		 document.querySelector("body").innerHTML = "Неверный логин и пароль";
-		setTimeout(() => document.querySelector("body").outerHTML =  startLink ,3000);
+		let l = document.createElement("div");
+		document.getElementById("signin").appendChild(l);
+		l.textContent = "Неверный логин и пароль"
+		setTimeout(()=> l.remove(),4000);
 }
 
 		
